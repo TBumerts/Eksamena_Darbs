@@ -1,24 +1,29 @@
 package Tests;
 
-import java.util.Scanner;
+import java.awt.Component;
+import javax.swing.JOptionPane;
 
 public class SakotnejaIzvele {
 
 	public static void main(String[] args) {
-		 String izvele;
-		 Scanner scan = new Scanner(System.in);
-		 System.out.println("1-Sakt | 2-Aizvert");
-		 izvele = scan.next();
-		 do {
-		 switch(izvele) {
-		 case "1":
-			 
-			 break;
-		 case "2":
-			 System.out.println("Programma aizverta!");
-			 break;
-		 }
-	}while(izvele=="2");
+		Object[] options = {"Sākt", "Aizvert"};
+		Component frame = null;
+		
+		int n = JOptionPane.showOptionDialog(frame,
+			"Iesākt testu?",
+			"Jautājums lietotājam",
+			JOptionPane.YES_NO_OPTION,
+			JOptionPane.QUESTION_MESSAGE,
+			null,
+			options,
+			options[0]);
+		
+		if (n == 0) {
+			SaktTestu();
+		}
 	}
 
+	private static void SaktTestu() {
+		
+	}
 }
