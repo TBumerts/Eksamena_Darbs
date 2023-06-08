@@ -9,10 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class CheckBoxTests extends JFrame implements ActionListener {
-    JLabel l1,l2,l3;
-    JCheckBox cb1, cb2, cb3, cb4, cb5,cb6,
-    cb7,cb8,cb9;
-    JButton b1, b2,b3;
+    JLabel l1, l2, l3;
+    JCheckBox cb1, cb2, cb3, cb4, cb5, cb6, cb7, cb8, cb9;
+    JButton b1, b2, b3;
     float sk;
 
     CheckBoxTests() {
@@ -51,6 +50,7 @@ public class CheckBoxTests extends JFrame implements ActionListener {
             String msg = "";
 
             if (cb1.isSelected()) {
+                // Izpildīt darbības, kas saistītas ar pirmo jautājumu
             }
 
             if (cb2.isSelected()) {
@@ -58,6 +58,7 @@ public class CheckBoxTests extends JFrame implements ActionListener {
             }
 
             if (cb3.isSelected()) {
+                // Izpildīt darbības, kas saistītas ar trešo jautājumu
             }
 
             msg += "-----------\n";
@@ -74,41 +75,61 @@ public class CheckBoxTests extends JFrame implements ActionListener {
                 l2.setBounds(50, 50, 300, 20);
                 cb4 = new JCheckBox("Reālus skaitļus");
                 cb4.setBounds(100, 100, 150, 20);
+                cb5 = new JCheckBox("Veselus Skaitlus");
+                cb5.setBounds(100, 150, 150, 20);
+                cb6 = new JCheckBox("Rausisa Skaitlus");
+                cb6.setBounds(100, 200, 150, 20);
                 b2 = new JButton("Apstiprinat");
-                b2.setBounds(100, 150, 100, 30);
+                b2.setBounds(100, 250, 100, 30);
                 b2.addActionListener(this);
 
                 add(l2);
                 add(cb4);
+                add(cb5);
+                add(cb6);
                 add(b2);
 
                 revalidate();
                 repaint();
-            }else if(cb4.isSelected()|| cb5.isSelected() || cb6.isSelected()) {
-        	   remove(l2);
-        	   remove(cb4);
-        	   remove(cb5);
-        	   remove(cb6);
-        	   remove(b2);
-        	   
-        	   l3 = new JLabel("3. Kādus skaitļus ievieto double mainīgajā");
-               l3.setBounds(50, 50, 300, 20);
-               cb7 = new JCheckBox("Reālus skaitļus");
-               cb7.setBounds(100, 100, 150, 20);
-               b3 = new JButton("Apstiprinat");
-               b3.setBounds(100, 150, 100, 30);
-               b3.addActionListener(this);
-               
-               add(l3);
-               add(cb7);
-               add(b3);
-               
-               revalidate();
-               repaint();
-        	   
-        	   }
+            }
         } else if (e.getSource() == b2) {
             if (cb4.isSelected()) {
+                sk++;
+            }
+            remove(l2);
+            remove(cb4);
+            remove(cb5);
+            remove(cb6);
+            remove(b2);
+
+            revalidate();
+            repaint();
+
+            String msg = "-----------\n";
+            JOptionPane.showMessageDialog(this, msg + "Total: " + sk);
+
+            if (cb4.isSelected() || cb5.isSelected() || cb6.isSelected()) {
+                l3 = new JLabel("3. Kādus skaitļus ievieto double mainīgajā");
+                l3.setBounds(50, 50, 300, 20);
+                cb7 = new JCheckBox("Reālus skaitļus");
+                cb7.setBounds(100, 100, 150, 20);
+                cb8 = new JCheckBox("Veselus Skaitlus");
+                cb8.setBounds(100, 150, 150, 20);
+                cb9 = new JCheckBox("Rausisa Skaitlus");
+                cb9.setBounds(100, 150, 150, 20);
+                b3 = new JButton("Apstiprinat");
+                b3.setBounds(100, 150, 100, 30);
+                b3.addActionListener(this);
+                add(l3);
+                add(cb7);
+                add(cb8);
+                add(cb9);
+                add(b3);
+                revalidate();
+                repaint();
+            }
+        } else if (e.getSource() == b3) {
+            if (cb8.isSelected()) {
                 sk++;
             }
 
