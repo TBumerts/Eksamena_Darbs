@@ -1,5 +1,4 @@
 package tests;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,9 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class CheckBoxTests extends JFrame implements ActionListener {
-    JLabel l1, l2;
-    JCheckBox cb1, cb2, cb3, cb4;
-    JButton b1, b2;
+    JLabel l1,l2,l3;
+    JCheckBox cb1, cb2, cb3, cb4, cb5,cb6,
+    cb7,cb8,cb9;
+    JButton b1, b2,b3;
     float sk;
 
     CheckBoxTests() {
@@ -51,7 +51,6 @@ public class CheckBoxTests extends JFrame implements ActionListener {
             String msg = "";
 
             if (cb1.isSelected()) {
-                // Izpildīt darbības, kas saistītas ar pirmo jautājumu
             }
 
             if (cb2.isSelected()) {
@@ -59,12 +58,18 @@ public class CheckBoxTests extends JFrame implements ActionListener {
             }
 
             if (cb3.isSelected()) {
-                // Izpildīt darbības, kas saistītas ar trešo jautājumu
             }
+
             msg += "-----------\n";
             JOptionPane.showMessageDialog(this, msg + "Total: " + sk);
 
             if (cb1.isSelected() || cb2.isSelected() || cb3.isSelected()) {
+                remove(l1);
+                remove(cb1);
+                remove(cb2);
+                remove(cb3);
+                remove(b1);
+
                 l2 = new JLabel("2. Kādus skaitļus ievieto double mainīgajā");
                 l2.setBounds(50, 50, 300, 20);
                 cb4 = new JCheckBox("Reālus skaitļus");
@@ -73,30 +78,42 @@ public class CheckBoxTests extends JFrame implements ActionListener {
                 b2.setBounds(100, 150, 100, 30);
                 b2.addActionListener(this);
 
-                remove(l1);
-                remove(cb1);
-                remove(cb2);
-                remove(cb3);
-                remove(b1);
-
                 add(l2);
                 add(cb4);
                 add(b2);
 
                 revalidate();
                 repaint();
-            }
+            }else if(cb4.isSelected()|| cb5.isSelected() || cb6.isSelected()) {
+        	   remove(l2);
+        	   remove(cb4);
+        	   remove(cb5);
+        	   remove(cb6);
+        	   remove(b2);
+        	   
+        	   l3 = new JLabel("3. Kādus skaitļus ievieto double mainīgajā");
+               l3.setBounds(50, 50, 300, 20);
+               cb7 = new JCheckBox("Reālus skaitļus");
+               cb7.setBounds(100, 100, 150, 20);
+               b3 = new JButton("Apstiprinat");
+               b3.setBounds(100, 150, 100, 30);
+               b3.addActionListener(this);
+               
+               add(l3);
+               add(cb7);
+               add(b3);
+               
+               revalidate();
+               repaint();
+        	   
+        	   }
         } else if (e.getSource() == b2) {
-            sk = 0;
-            String msg = "";
-
             if (cb4.isSelected()) {
-                // Izpildīt darbības, kas saistītas ar otro jautājumu
+                sk++;
             }
 
-            msg += "-----------\n";
+            String msg = "-----------\n";
             JOptionPane.showMessageDialog(this, msg + "Total: " + sk);
         }
     }
 }
-
