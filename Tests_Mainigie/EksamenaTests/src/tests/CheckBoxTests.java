@@ -1,61 +1,70 @@
 package tests;
 
+
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class CheckBoxTests extends JFrame implements ActionListener {
     JLabel questionLabel;
     JCheckBox[] checkboxes;
     JButton button;
-    int currentQuestion;
+    int tagatJautajums;
+    int sk;
 
-    String[] questions = {
-        "Kādus skaitļus ievieto int mainīgajā?",
-        "Kādus skaitļus ievieto double mainīgajā?",
-        "Kādus skaitļus ievieto double mainīgajā?",
-        "Kādus skaitļus ievieto String mainīgajā?",
-        "Kādus skaitļus ievieto double mainīgajā?",
-        "Vai int ir maksimala vertība?",
-        "Kas ir jaizmanto lai saglabatu mainigaja string?"
+    String[] jautajumi = {
+        "1. Ko ievieto int mainīgajā?",
+        "2. Kurs no dotajiem ir int?",
+        "3. Kurs no dotajiem skaitļiem ir double?",
+        "4. Ko saglabā mainīgajā double?",
+        "5. Kādas vērtības atgriež boolean mainīgais?",
+        "6. Kurš no dotajiem ir char mainīgais?",
+        "7. Kā piesaista mainīgajam char vērtību?",
+        "8. Kā tiek piešķirts simbolu virknes teksts?",
+        "9. Kā iegūst simbolu virknes garumu?",
+        "10. Kurā no dotajiem ir pareizi uzrakstīts, kas ir masīvs?"
     };
 
-    String[][] answerOptions = {
-        {"Reālus skaitļus", "Veselus skaitļus", "Kautkādas vērtības"},
-        {"Reālus skaitļus", "Veselus skaitļus", "Raugāmus skaitļus"},
-        {"Reālus skaitļus", "Veselus skaitļus", "Raugāmus skaitļus"},
-        {"Reālus skaitļus", "Veselus skaitļus", "Raugāmus skaitļus"},
-        {"Reālus skaitļus", "Veselus skaitļus", "Raugāmus skaitļus"},
-        {"Nav","Varbut ir","Janis"},
-        {"Iekavas","Semikols","Pedinas"}
+    String[][] Atbildes = {
+        {"Reālus skaitļus", "Veselus skaitļus", "Masīva skaitļus", "Skaitļus bez komata"},
+        {"2", "\'a'", "1000", "2.0"},
+        {"100", "2.0", "2,0", "195.3"},
+        {"Reālus skaitļus", "Skaitļus ar komatu", "Veseli skaitļi", "Masīva elementus"},
+        {"true", "false", "Ja", "Patiesība"},
+        {"\'S'", "\'Janis'", "\'A'", "\"A\"", "1"},
+        {"Iekavas", "Semikols", "Pedinas", "Punkts"},
+        {"Pēdiņas", "Semikols", "Punkts", "Nevar pieskirt"},
+        {"length()", "size()", "izmers()", "Nav iespējams noteikt!"},
+        {"int[] skaits", "String[]", "[] - Masīvs", "char = 'a'"}
     };
 
     CheckBoxTests() {
         questionLabel = new JLabel();
-        checkboxes = new JCheckBox[3];
+        checkboxes = new JCheckBox[4];
         button = new JButton("Apstiprināt");
-        button.setBounds(100, 250, 100, 30);
         button.addActionListener(this);
 
-        add(questionLabel);
-        for (int i = 0; i < 3; i++) {
+        JPanel contentPane = new JPanel(new GridLayout(6, 1, 10, 10));
+        contentPane.add(questionLabel);
+        for (int i = 0; i < 4; i++) {
             checkboxes[i] = new JCheckBox();
-            checkboxes[i].setBounds(100, 100 + (i * 50), 150, 20);
-            add(checkboxes[i]);
+            contentPane.add(checkboxes[i]);
         }
-        add(button);
+        contentPane.add(button);
+        setContentPane(contentPane);
 
-        setSize(400, 400);
-        setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        pack();
         setVisible(true);
 
-        currentQuestion = 0;
+        tagatJautajums = 0;
+        sk = 0;
         displayQuestion();
     }
 
@@ -65,32 +74,60 @@ public class CheckBoxTests extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        int sk = 0;
+        String IzveletasAtbildes = "";
 
-        for (JCheckBox checkbox : checkboxes) {
-            if (checkbox.isSelected()) {
+        for (int i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].isSelected()) {
+                IzveletasAtbildes += checkboxes[i].getText() + "\n";
+            }
+        }
+
+        if (tagatJautajums == 0) {
+            if (checkboxes[1].isSelected() || checkboxes[3].isSelected()) {
                 sk++;
+            }
+        } else {
+            if (parbAtb(Atbildes[tagatJautajums])) {
             }
         }
 
         String msg = "-----------\n";
-        JOptionPane.showMessageDialog(this, msg + "Kopā: " + sk);
+        JOptionPane.showMessageDialog(this, msg + "Kopā: " + sk + "\nIzvēlētās atbildes:\n" + IzveletasAtbildes);
 
-        currentQuestion++;
-        if (currentQuestion < questions.length) {
+        tagatJautajums++;
+        if (tagatJautajums < jautajumi.length) {
             displayQuestion();
         } else {
-        	
+            JOptionPane.showMessageDialog(this, "Tests pabeigts!\nKopā iegūtie punkti: " + sk);
             dispose();
         }
     }
 
     private void displayQuestion() {
-        questionLabel.setText(questions[currentQuestion]);
+        questionLabel.setText(jautajumi[tagatJautajums]);
 
         for (int i = 0; i < checkboxes.length; i++) {
-            checkboxes[i].setText(answerOptions[currentQuestion][i]);
+            checkboxes[i].setText(Atbildes[tagatJautajums][i]);
             checkboxes[i].setSelected(false);
         }
+    }
+
+    private boolean parbAtb(String[] pareizAtb) {
+        for (int i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].isSelected()) {
+                String selectedAnswer = checkboxes[i].getText();
+                boolean Pareizi = false;
+                for (String correctAnswer : pareizAtb) {
+                    if (selectedAnswer.equals(correctAnswer)) {
+                        Pareizi = true;
+                        break;
+                    }
+                }
+                if (!Pareizi) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
