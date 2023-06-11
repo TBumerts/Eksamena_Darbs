@@ -38,7 +38,7 @@ public class CheckBoxTests extends JFrame implements ActionListener {
         {"Reālus skaitļus", "Skaitļus ar komatu", "Veseli skaitļi", "Masīva elementus"},
         {"true", "false", "Ja", "Patiesība"},
         {"\'S'", "\'Janis'", "\'A'", "\"A\"", "1"},
-        {"Iekavas", "Semikols", "Pedinas", "Punkts"},
+        {"Iekavas", "Semikols", "Pedinas", "Apastrofi"},
         {"Pēdiņas", "Semikols", "Punkts", "Nevar pieskirt"},
         {"length()", "size()", "izmers()", "Nav iespējams noteikt!"},
         {"int[] skaits", "String[]", "[] - Masīvs", "char = 'a'"}
@@ -83,16 +83,71 @@ public class CheckBoxTests extends JFrame implements ActionListener {
         }
 
         if (tagatJautajums == 0) {
-            if (checkboxes[1].isSelected() || checkboxes[3].isSelected()) {
-                sk++;
+            if (checkboxes[1].isSelected() && checkboxes[3].isSelected()) {
+                sk=sk+2;
+            }else if(checkboxes[1].isSelected() || checkboxes[3].isSelected()) {
+            	sk++;
             }
-        } else {
+        }if(tagatJautajums == 1) {
+        	if (checkboxes[0].isSelected() && checkboxes[2].isSelected()) {
+                sk=sk+2;
+            }else if(checkboxes[1].isSelected() || checkboxes[2].isSelected()) {
+            	sk++;
+            }
+        	
+        }if(tagatJautajums == 2) {
+        	if (checkboxes[1].isSelected() && checkboxes[3].isSelected()) {
+                sk=sk+2;
+            }else if(checkboxes[1].isSelected() || checkboxes[3].isSelected()) {
+            	sk++;
+            }
+        	}if(tagatJautajums == 3){
+        		if (checkboxes[0].isSelected() && checkboxes[1].isSelected()) {
+                    sk=sk+2;
+                }else if(checkboxes[0].isSelected() || checkboxes[1].isSelected()) {
+                	sk++;
+                }
+        }if(tagatJautajums == 4) {
+        	if (checkboxes[0].isSelected() && checkboxes[1].isSelected()) {
+                sk=sk+2;
+            }else if(checkboxes[0].isSelected() || checkboxes[1].isSelected()) {
+            	sk++;
+            }
+        }if(tagatJautajums == 5) {
+        	if (checkboxes[0].isSelected() && checkboxes[2].isSelected()) {
+                sk=sk+2;
+            }else if(checkboxes[0].isSelected() || checkboxes[2].isSelected()) {
+            	sk++;
+            }
+        }if(tagatJautajums == 6) {
+        	if (checkboxes[0].isSelected() && checkboxes[3].isSelected()) {
+                sk=sk+2;
+            }else if(checkboxes[0].isSelected() || checkboxes[3].isSelected()) {
+            	sk++;
+            }
+        }if(tagatJautajums == 7) {
+        	if (checkboxes[0].isSelected() && checkboxes[3].isSelected()) {
+                sk=sk+2;
+            }else if(checkboxes[0].isSelected() || checkboxes[3].isSelected()) {
+            	sk++;
+            }
+        }if(tagatJautajums == 8) {
+        	if (checkboxes[0].isSelected() && checkboxes[3].isSelected()) {
+                sk=sk+2;
+            }else if(checkboxes[0].isSelected() || checkboxes[3].isSelected()) {
+            	sk++;
+            }
+        }if(tagatJautajums == 9) {
+        	if (checkboxes[0].isSelected() && checkboxes[3].isSelected()) {
+                sk=sk+2;
+            }else if(checkboxes[0].isSelected() || checkboxes[3].isSelected()) {
+            	sk++;
+            }
+        }else{
             if (parbAtb(Atbildes[tagatJautajums])) {
             }
         }
-
-        String msg = "-----------\n";
-        JOptionPane.showMessageDialog(this, msg + "Kopā: " + sk + "\nIzvēlētās atbildes:\n" + IzveletasAtbildes);
+        JOptionPane.showMessageDialog(this,"\nIzvēlētās atbildes:\n" + IzveletasAtbildes);
 
         tagatJautajums++;
         if (tagatJautajums < jautajumi.length) {
