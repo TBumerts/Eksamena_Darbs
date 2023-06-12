@@ -3,4 +3,4 @@ Sesijas eksāmena darbs par tēmu: "Mainīgie, to datu tipi, pamatdarbības darb
 ## Darāmo darbu saraksts: 
 - [x] Izstrādāt informatīvu materiālu par izvēlēto tēmu, kas satur teorijas izklāstu
 - [x] Izstrādāt programmatūru (testu) kas veiks lietotāja zināšanu pārbaudi
-- [ ] Izveidot divas UML diagrammas
+- [x] Izveidot divas UML diagrammas

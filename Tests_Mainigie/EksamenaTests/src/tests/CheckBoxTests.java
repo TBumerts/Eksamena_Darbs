@@ -86,6 +86,9 @@ public class CheckBoxTests extends JFrame implements ActionListener {
 			options[0]);
 		//Ja atbilde uz jautājumu ir ja tad tiek palaista programma
 		if (n == 0) {
+			JOptionPane.showMessageDialog(null,"Veic 10 jautajumus katrā jautajumā 2 pareizas atbildes\n"
+					+ "Ja jautājuma abas atbildes ir pareizas tiks pieskaitīti 2 punkti pretējā gadijumā 1 punkts\n"
+					+ "Punktu skaits tiks parādīts programmas beigās");
 	        new CheckBoxTests();  
 		}
     }
